@@ -1,19 +1,15 @@
 package sort;
 
-import static org.junit.Assert.*;
 import org.junit.FixMethodOrder;
-
-import java.util.Arrays;
-
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.util.Random;
-import java.util.Collections;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.HashMap;
-import java.util.ArrayList;
+import java.util.Random;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SortsTest {
@@ -247,8 +243,15 @@ public class SortsTest {
    * Preconditon: A is not null, and 0 <= start <= end <= A.length.
    **/
   private static boolean isSorted(int[] A, int start, int end) {
-    // TODO - Lab 2
-    return false;
+	  int prev = A[0];
+    	for (int i : A) {
+    		// check if number is equal to or larger than previous
+    		if (i < prev) {
+    			return false;
+    		}
+    		prev = i;
+    	}
+    return true;
   }
 
 
@@ -258,8 +261,31 @@ public class SortsTest {
    *    0 <= start <= end <= A.length = B.length 
    **/
   public static boolean sameElements(int[] A, int[] B, int start, int end) {
-    // TODO - Lab 2
-    return false;
+	  HashMap<Integer, Integer> mapA = new HashMap<>();
+	  HashMap<Integer, Integer> mapB = new HashMap<>();
+
+	  // hashmaps must be equal in length to be comparable
+    	if (A.length == B.length) {
+          // populate hashmaps
+          for (int i = 0; i < A.length; i++) {
+            if (mapA.containsKey(A[i])) {
+              mapA.put(A[i], mapA.get(A[i]) + 1);
+            } else {
+              mapA.put(A[i], 1);
+            }
+
+            if (mapB.containsKey(B[i])) {
+              mapB.put(B[i], mapB.get(B[i]) + 1);
+            } else {
+              mapB.put(B[i], 1);
+            }
+
+          }
+
+    		return mapA.equals(mapB);
+    	}
+
+    	return false;
   }
 
 
@@ -267,8 +293,18 @@ public class SortsTest {
    * element at A[pi].
    * In other words, A[start..pi] <= A[pi] <= A[pi+1..end] */
   public static boolean isPartitioned(int[] A, int start, int end, int pi) {
-    // TODO - Lab 2
-    return false;
+    for (int i = start; i < pi; i++) {
+      if (A[i] > A[pi]) {
+        return false;
+      }
+    }
+
+    for (int i = pi; i < end; i++) {
+      if (A[i] < A[pi]) {
+        return false;
+      }
+    }
+	  return true;
   }
 
 
