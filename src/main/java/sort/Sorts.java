@@ -50,7 +50,10 @@ public class Sorts {
 
   /** use quicksort to sort the subarray A[start..end] */
   public void quickSort(int[] A, int start, int end) {
-    // TODO
+    if (end-start == 0) return;
+    int mid = partition(A, start, end, start);
+    quickSort(A, start, mid);
+    quickSort(A, mid + 1, end);
   }
 
   /** merge the sorted subarrays A[start..mid] and A[mid..end] into

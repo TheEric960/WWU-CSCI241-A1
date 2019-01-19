@@ -166,7 +166,8 @@ public class SortsTest {
 
   @Test
   public void test24Quicksort() {
-    int[] A = getRandomArray(100, 24);
+//    int[] A = getRandomArray(100, 24);
+    int[] A = getRandomArray(10, 24);
     int[] Aorig = A.clone();
 
     Sorts s = new Sorts();
@@ -243,13 +244,13 @@ public class SortsTest {
    * Preconditon: A is not null, and 0 <= start <= end <= A.length.
    **/
   private static boolean isSorted(int[] A, int start, int end) {
-	  int prev = A[0];
-    	for (int i : A) {
+	  int prev = A[start];
+    	for (int i = start; i < end; i++) {
     		// check if number is equal to or larger than previous
-    		if (i < prev) {
+    		if (A[i] < prev) {
     			return false;
     		}
-    		prev = i;
+    		prev = A[i];
     	}
     return true;
   }
