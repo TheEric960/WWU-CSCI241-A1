@@ -59,12 +59,42 @@ public class Sorts {
   /** merge the sorted subarrays A[start..mid] and A[mid..end] into
    *  a single sorted array in A. */
   public void merge(int[] A, int start, int mid, int end) {
-      // TODO
+      int[] B = A.clone();
+      int i = start, j = mid, k = start;
+
+      while (i < mid && j < end) {
+        if (B[i] < B[j]) {
+          A[k] = B[i];
+          i++;
+        } else {
+          A[k] = B[j];
+          j++;
+        }
+        k++;
+      }
+
+      while (i < mid) {
+        A[k] = B[i];
+        i++;
+        k++;
+      }
+
+      while (j < end) {
+        A[k] = B[j];
+        j++;
+        k++;
+      }
   }
 
   /** use mergesort to sort the subarray A[start..end] */
   public void mergeSort(int[] A, int start, int end) {
-    // TODO
+    if (end - start < 2) return;
+    int mid = (end - start) / 2 + start;
+
+    mergeSort(A, start, mid);
+    mergeSort(A, mid, end);
+
+    merge(A, start, mid, end);
   }
 
   /** Sort A using LSD radix sort. Uses counting sort to sort on each digit*/
