@@ -9,18 +9,19 @@ public class SortsDriver {
         Scanner sc = new Scanner(System.in);
         Sorts sorts = new Sorts();
 
+        // get sorting method and array size
         System.out.print("Enter sort (i[nsertion], q[uick], m[erge], r[adix], a[ll]: ");
         String choice = sc.nextLine().trim().toLowerCase();
         System.out.print("Enter n (size of array to sort): ");
         int n = sc.nextInt();
 
+        // generate arrays
         int[] arrO = getRandomArray(n);
         int[] arrB = arrO.clone();
 
-        if (n <= 20) {
-            printArray(arrO, n, "Unsorted");
-        }
+        printArray(arrO, n, "Unsorted");
 
+        // sort based on input
         switch (choice) {
             case "i":
                 sorts.insertionSort(arrB, 0, arrB.length);
@@ -77,6 +78,15 @@ public class SortsDriver {
         sc.close();
     }
 
+    /**
+     * Prints an array in format
+     * <blockquote><pre>
+     *      keyword: [ n1 n2 n3 ]
+     * </pre></blockquote>
+     * @param A array to be printed
+     * @param n array length
+     * @param keyword header for printed array
+     */
     private static void printArray(int[] A, int n, String keyword) {
         if (n <= 20) {
             System.out.print(keyword + ": [ ");

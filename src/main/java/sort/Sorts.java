@@ -102,7 +102,7 @@ public class Sorts {
             k++;
         }
 
-        comparisonCount += 3;
+        comparisonCount += 3;   // three while loops that failed comparison
     }
 
     /**
