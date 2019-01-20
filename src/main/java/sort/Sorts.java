@@ -34,7 +34,7 @@ public class Sorts {
    *  A[start..i] <= A[i] <= A[i+1..end] 
    **/
   public int partition(int[] A, int start, int end, int pivIndex) {
-    swap(A, pivIndex, start);  // get pivot to start to partition
+    swap(A, pivIndex, start);  // get pivot to start for partitioning
     int j = start + 1;
 
     for (int i = start + 1; i < end; i++) {
