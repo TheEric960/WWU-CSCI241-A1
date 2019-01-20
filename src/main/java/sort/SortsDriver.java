@@ -23,51 +23,75 @@ public class SortsDriver {
         int[] arrB = arrO.clone();
 
         printArray(arrO, n, "Unsorted");
+        double time= 0;
 
         // sort based on input
         switch (choice) {
             case "i":
+                time = System.nanoTime();
                 sorts.insertionSort(arrB, 0, arrB.length);
+                time = (System.nanoTime() - time) / 1000;
                 printArray(arrB, n, "Sorted");
                 System.out.println("Comparisons: " + sorts.getComparisonCount());
+                System.out.println("Time(\u00B5s): " + time);
                 break;
             case "q":
+                time = System.nanoTime();
                 sorts.quickSort(arrB, 0, arrB.length);
+                time = (System.nanoTime() - time) / 1000;
                 printArray(arrB, n, "Sorted");
                 System.out.println("Comparisons: " + sorts.getComparisonCount());
+                System.out.println("Time(\u00B5s): " + time);
                 break;
             case "m":
+                time = System.nanoTime();
                 sorts.mergeSort(arrB, 0, arrB.length);
+                time = (System.nanoTime() - time) / 1000;
                 printArray(arrB, n, "Sorted");
                 System.out.println("Comparisons: " + sorts.getComparisonCount());
+                System.out.println("Time(\u00B5s): " + time);
                 break;
             case "r":
+//                time = System.nanoTime();
 //                sorts.radixSort(arrB);
+//                time = (System.nanoTime() - time) / 1000;
 //                printArray(arrB, n, "Sorted");
 //                System.out.println("Comparisons: " + sorts.getComparisonCount());
+//                System.out.println("Time(\u00B5s): " + time);
 //                break;
             case "a":
+                time = System.nanoTime();
                 sorts.insertionSort(arrB, 0, arrB.length);
+                time = (System.nanoTime() - time) / 1000;
                 System.out.println("insertion: " + sorts.getComparisonCount());
                 printArray(arrB, n, "Sorted");
+                System.out.println("Time(\u00B5s): " + time);
                 sorts.resetComparisonCount();
 
                 int[] arrC = arrO.clone();
+                time = System.nanoTime();
                 sorts.quickSort(arrC, 0, arrC.length);
+                time = (System.nanoTime() - time) / 1000;
                 System.out.println("\nquick: " + sorts.getComparisonCount());
                 printArray(arrC, n, "Sorted");
+                System.out.println("Time(\u00B5s): " + time);
                 sorts.resetComparisonCount();
 
                 int[] arrD = arrO.clone();
+                time = System.nanoTime();
                 sorts.mergeSort(arrD, 0, arrD.length);
+                time = (System.nanoTime() - time) / 1000;
                 System.out.println("\nmerge: " + sorts.getComparisonCount());
                 printArray(arrD, n, "Sorted");
-                ;
+                System.out.println("Time(\u00B5s): " + time);
                 sorts.resetComparisonCount();
 
 //                int[] arrE = arrO.clone();
+//                time = System.nanoTime();
 //                sorts.radixSort(arrE);
+//                time = (System.nanoTime() - time) / 1000;
 //                System.out.println("\nradix: " + sorts.getComparisonCount());
+//                System.out.println("Time(\u00B5s): " + time);
 //                printArray(arrE, n, "Sorted");
 
                 break;
