@@ -21,9 +21,12 @@ public class Sorts {
       int j = i;
 
       while (j > 0 && A[j - 1] > A[j]) {
+          comparisonCount++;
           swap(A, j, j - 1);
           j--;
       }
+
+      comparisonCount++;
     }
   }
 
@@ -38,6 +41,7 @@ public class Sorts {
     int j = start + 1;
 
     for (int i = start + 1; i < end; i++) {
+        comparisonCount++;
       if (A[i] < A[start]) {
         swap(A, j, i);
         j++;
@@ -63,6 +67,8 @@ public class Sorts {
       int i = start, j = mid, k = start;
 
       while (i < mid && j < end) {
+          comparisonCount++;
+
         if (B[i] < B[j]) {
           A[k] = B[i];
           i++;
@@ -74,16 +80,22 @@ public class Sorts {
       }
 
       while (i < mid) {
+          comparisonCount++;
+
         A[k] = B[i];
         i++;
         k++;
       }
 
       while (j < end) {
+          comparisonCount++;
+
         A[k] = B[j];
         j++;
         k++;
       }
+
+      comparisonCount += 3;
   }
 
   /** use mergesort to sort the subarray A[start..end] */
