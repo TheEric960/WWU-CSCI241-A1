@@ -57,7 +57,8 @@ public class SortsDriver {
                 int[] arrD = arrO.clone();
                 sorts.mergeSort(arrD, 0, arrD.length);
                 System.out.println("\nmerge: " + sorts.getComparisonCount());
-                printArray(arrD, n, "Sorted");;
+                printArray(arrD, n, "Sorted");
+                ;
                 sorts.resetComparisonCount();
 
 //                int[] arrE = arrO.clone();
@@ -86,13 +87,15 @@ public class SortsDriver {
         }
     }
 
-    /** method taken from SortsTest */
+    /**
+     * method taken from SortsTest
+     */
     private static int[] getRandomArray(int n) {
         int[] A = new int[n];
         Random rand = new Random(System.currentTimeMillis());
 
         for (int i = 0; i < n; i++) {
-            A[i] = rand.nextInt(2*n+1) - n;
+            A[i] = rand.nextInt(2 * n + 1) - n;
         }
         return A;
     }
