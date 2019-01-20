@@ -5,8 +5,10 @@ import java.util.Scanner;
 
 public class SortsDriver {
 
+    private static Scanner sc = new Scanner(System.in);
+    private static Random rand = new Random(System.currentTimeMillis());
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
         Sorts sorts = new Sorts();
 
         // get sorting method and array size
@@ -14,9 +16,10 @@ public class SortsDriver {
         String choice = sc.nextLine().trim().toLowerCase();
         System.out.print("Enter n (size of array to sort): ");
         int n = sc.nextInt();
+        sc.nextLine();  // clear scanner
 
         // generate arrays
-        int[] arrO = getRandomArray(n);
+        int[] arrO = generateArray(n);
         int[] arrB = arrO.clone();
 
         printArray(arrO, n, "Unsorted");
@@ -97,16 +100,82 @@ public class SortsDriver {
         }
     }
 
+    public static int[] generateArray(int n){
+        System.out.print("Enter array type (r[andom], s[orted], m[ostly sorted], " +
+                "p[robability sort]: ");
+        String choice = sc.nextLine().trim().toLowerCase();
+
+        switch (choice) {
+            case "r":
+                return getRandomArray(n);
+            case "s":
+                return getSortedArray(n);
+            case "m":
+                return getMostlySortedArray(n);
+            case "p":
+                return getProbabilityArray(n);
+            default:
+                System.out.println("Invalid input, generating random...");
+                return getRandomArray(n);
+        }
+    }
+
     /**
-     * method taken from SortsTest
+     * generates a random array
      */
     private static int[] getRandomArray(int n) {
         int[] A = new int[n];
-        Random rand = new Random(System.currentTimeMillis());
 
         for (int i = 0; i < n; i++) {
             A[i] = rand.nextInt(2 * n + 1) - n;
         }
+        return A;
+    }
+
+    /**
+     * generates a sorted array from [0...n]
+     */
+    private static int[] getSortedArray(int n) {
+        int[] A = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            A[i] = i;
+        }
+
+        return A;
+    }
+
+    /**
+     * generates an array with the last 5% of its values being random
+     */
+    private static int[] getMostlySortedArray(int n) {
+        int piv = n - (int)(.05 * n);
+        int[] A = getSortedArray(n);
+        int[] B = getRandomArray(n);
+
+        int j = 0;
+        for (int i = piv; i < n; i++) {
+            A[i] = B[j];
+            j++;
+        }
+
+        return A;
+    }
+
+    /**
+     * generates a sorted array with every entry having a 10% chance of being random
+     */
+    private static int[] getProbabilityArray(int n) {
+        int[] A = getSortedArray(n);
+        int[] B = getRandomArray(n);
+
+        for (int i = 0; i < n; i++) {
+            double j = rand.nextDouble();
+            if (j > 0.9) {
+                A[i] = B[i];
+            }
+        }
+
         return A;
     }
 }
