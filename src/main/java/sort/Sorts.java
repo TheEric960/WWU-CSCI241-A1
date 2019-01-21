@@ -63,10 +63,9 @@ public class Sorts {
     public void quickSort(int[] A, int start, int end) {
         if (end - start == 0) return;
 
-//        int pivIndex = start;                         // original index
-        int pivIndex = getMedianOfThree(A, start, end); // median of three index
-
+        int pivIndex = getMedianOfThree(A, start, end);
         int mid = partition(A, start, end, pivIndex);
+
         quickSort(A, start, mid);
         quickSort(A, mid + 1, end);
     }
@@ -77,7 +76,7 @@ public class Sorts {
      */
     private int getMedianOfThree(int[] A, int start, int end) {
         int mid = (end - start) / 2;
-        end -= 1;   // set end to within bounds
+        end--;   // set end to within bounds
 
         // done instead of complex if statements
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -87,6 +86,7 @@ public class Sorts {
 
         int[] fml = {A[start], A[mid], A[end]}; // fml = first, middle, last
         insertionSort(fml, 0, 2);   // allows for comparison to be counted
+
         return map.get(fml[1]);
     }
 
