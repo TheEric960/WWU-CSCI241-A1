@@ -1,6 +1,8 @@
 
 package sort;
 
+import java.util.HashMap;
+
 public class Sorts {
 
     // maintains a count of comparisons performed by this Sorts object
@@ -60,9 +62,32 @@ public class Sorts {
      */
     public void quickSort(int[] A, int start, int end) {
         if (end - start == 0) return;
-        int mid = partition(A, start, end, start);
+
+//        int pivIndex = start;                         // original index
+        int pivIndex = getMedianOfThree(A, start, end); // median of three index
+
+        int mid = partition(A, start, end, pivIndex);
         quickSort(A, start, mid);
         quickSort(A, mid + 1, end);
+    }
+
+    /**
+     * returns the index of the median of the first, middle, and last positions
+     * of an array
+     */
+    private int getMedianOfThree(int[] A, int start, int end) {
+        int mid = (end - start) / 2;
+        end -= 1;   // set end to within bounds
+
+        // done instead of complex if statements
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(A[start], start);
+        map.put(A[mid], mid);
+        map.put(A[end], end);
+
+        int[] fml = {A[start], A[mid], A[end]}; // fml = first, middle, last
+        insertionSort(fml, 0, 2);   // allows for comparison to be counted
+        return map.get(fml[1]);
     }
 
     /**
