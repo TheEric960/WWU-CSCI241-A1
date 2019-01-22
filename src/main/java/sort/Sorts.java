@@ -28,7 +28,7 @@ public class Sorts {
                 j--;
             }
 
-            comparisonCount++;
+            comparisonCount++;  // for comparison failure
         }
     }
 
@@ -85,24 +85,19 @@ public class Sorts {
             }
             k++;
         }
+        comparisonCount++;  // for comparison failure
 
         while (i < mid) {
-            comparisonCount++;
-
             A[k] = B[i];
             i++;
             k++;
         }
 
         while (j < end) {
-            comparisonCount++;
-
             A[k] = B[j];
             j++;
             k++;
         }
-
-        comparisonCount += 3;   // three while loops that failed comparison
     }
 
     /**
