@@ -7,10 +7,9 @@ public class SortsDriver {
 
     private static Scanner sc = new Scanner(System.in);
     private static Random rand = new Random(System.currentTimeMillis());
+    private static Sorts sorts = new Sorts();
 
     public static void main(String[] args) {
-        Sorts sorts = new Sorts();
-
         // get sorting method and array size
         System.out.print("Enter sort (i[nsertion], q[uick], m[erge], r[adix], a[ll]: ");
         String choice = sc.nextLine().trim().toLowerCase();
@@ -32,32 +31,28 @@ public class SortsDriver {
                 sorts.insertionSort(arrB, 0, arrB.length);
                 time = (System.nanoTime() - time) / 1000;
                 printArray(arrB, n, "Sorted");
-                System.out.println("Comparisons: " + sorts.getComparisonCount());
-                System.out.println("Time(\u00B5s): " + time);
+                printInfo(time);
                 break;
             case "q":
                 time = System.nanoTime();
                 sorts.quickSort(arrB, 0, arrB.length);
                 time = (System.nanoTime() - time) / 1000;
                 printArray(arrB, n, "Sorted");
-                System.out.println("Comparisons: " + sorts.getComparisonCount());
-                System.out.println("Time(\u00B5s): " + time);
+                printInfo(time);
                 break;
             case "m":
                 time = System.nanoTime();
                 sorts.mergeSort(arrB, 0, arrB.length);
                 time = (System.nanoTime() - time) / 1000;
                 printArray(arrB, n, "Sorted");
-                System.out.println("Comparisons: " + sorts.getComparisonCount());
-                System.out.println("Time(\u00B5s): " + time);
+                printInfo(time);
                 break;
             case "r":
 //                time = System.nanoTime();
 //                sorts.radixSort(arrB);
 //                time = (System.nanoTime() - time) / 1000;
 //                printArray(arrB, n, "Sorted");
-//                System.out.println("Comparisons: " + sorts.getComparisonCount());
-//                System.out.println("Time(\u00B5s): " + time);
+//                printInfo(time);
 //                break;
             case "a":
                 time = System.nanoTime();
@@ -122,6 +117,15 @@ public class SortsDriver {
             }
             System.out.println("]");
         }
+    }
+
+    /**
+     * prints the comparison count and time in microseconds
+     * @param time time in microseconds
+     */
+    private static void printInfo(double time) {
+        System.out.println("Comparisons: " + sorts.getComparisonCount());
+        System.out.println("Time(\u00B5s): " + time);
     }
 
     public static int[] generateArray(int n){
