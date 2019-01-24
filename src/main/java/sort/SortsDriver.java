@@ -39,10 +39,10 @@ public class SortsDriver {
                 System.out.println("Comparisons: " + sorts.getComparisonCount());
                 break;
             case "r":
-//                sorts.radixSort(arrB);
-//                printArray(arrB, n, "Sorted");
-//                System.out.println("Comparisons: " + sorts.getComparisonCount());
-//                break;
+                sorts.radixSort(arrB);
+                printArray(arrB, n, "Sorted");
+                System.out.println("Comparisons: " + sorts.getComparisonCount());
+                break;
             case "a":
                 sorts.insertionSort(arrB, 0, arrB.length);
                 System.out.println("insertion: " + sorts.getComparisonCount());
@@ -59,13 +59,12 @@ public class SortsDriver {
                 sorts.mergeSort(arrD, 0, arrD.length);
                 System.out.println("\nmerge: " + sorts.getComparisonCount());
                 printArray(arrD, n, "Sorted");
-                ;
                 sorts.resetComparisonCount();
 
-//                int[] arrE = arrO.clone();
-//                sorts.radixSort(arrE);
-//                System.out.println("\nradix: " + sorts.getComparisonCount());
-//                printArray(arrE, n, "Sorted");
+                int[] arrE = arrO.clone();
+                sorts.radixSort(arrE);
+                System.out.println("\nradix: " + sorts.getComparisonCount());
+                printArray(arrE, n, "Sorted");
 
                 break;
             default:

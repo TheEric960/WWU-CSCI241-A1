@@ -118,7 +118,7 @@ public class Sorts {
     }
 
     /**
-     * Sort A using LSD radix sort. Uses counting sort to sort on each digit
+     * Sort A using LSD radix sort. Uses queue buckets to sort.
      */
     public void radixSort(int[] A) {
         // find most significant digit
@@ -129,14 +129,14 @@ public class Sorts {
             }
         }
 
-        //find position of significant digit (i.e. ones, tens, etc)
+        // find position of significant digit (i.e. ones, tens, etc)
         int place = 1;  // ones place
         while ((sigDigits) > 9) {
             place++;
             sigDigits /= 10;
         }
 
-        // sort for how many places the digit has
+        // sort for how significant digit has
         for (int i = 0; i < place; i++) {
             queueSorting(A, i);
         }
@@ -164,6 +164,12 @@ public class Sorts {
         }
     }
 
+    /**
+     * Assigns array numbers to queues based on the position of a digit and
+     * unpacks them in ascending order.
+     * @param A array of integers
+     * @param place digit position being sorted
+     */
     private void queueSorting(int[] A, int place) {
         // create queues
         Queue<Integer>[] queues = new Queue[10];
