@@ -1,7 +1,7 @@
 
 package sort;
 
-import java.util.HashMap;
+import java.util.*;
 
 public class Sorts {
 
@@ -139,10 +139,81 @@ public class Sorts {
     }
 
     /**
-     * Sort A using LSD radix sort. Uses counting sort to sort on each digit
+     * Sort A using LSD radix sort. Uses queue buckets to sort.
      */
     public void radixSort(int[] A) {
-        // TODO
+        // find most significant digit
+        int sigDigits = 0;
+        for (int a : A) {
+            if (Math.abs(a) > sigDigits) {
+                sigDigits = Math.abs(a);
+            }
+        }
+
+        // find position of significant digit (i.e. ones, tens, etc)
+        int place = 1;  // ones place
+        while ((sigDigits) > 9) {
+            place++;
+            sigDigits /= 10;
+        }
+
+        // sort for how significant the largest digit is
+        for (int i = 0; i < place; i++) {
+            queueSorting(A, i);
+        }
+
+        // sort negatives
+        Stack<Integer> n = new Stack<>();
+        Queue<Integer> p = new ArrayDeque<>();
+
+        for (int a : A) {
+            if (a < 0) n.push(a);
+            else p.add(a);
+        }
+
+        // empty in order
+        int i = 0;
+
+        while (!n.isEmpty()) {
+            A[i] = n.pop();
+            i++;
+        }
+
+        while (!p.isEmpty()) {
+            A[i] = p.remove();
+            i++;
+        }
+    }
+
+    /**
+     * Assigns array numbers to queues based on the position of a digit and
+     * unpacks them in ascending order.
+     * @param A array of integers
+     * @param place digit position being sorted
+     */
+    private void queueSorting(int[] A, int place) {
+        // create queues
+        Queue<Integer>[] queues = new Queue[10];
+        for (int i = 0; i < 10; i++) {
+            queues[i] = new ArrayDeque<>();
+        }
+
+        // fill queues based on digit value
+        for (int a : A) {
+            int n = getDigit(Math.abs(a), place);   // get digit for queue
+            queues[n].add(a);
+        }
+
+        // empty the queues in order
+        int j = 0;
+        for (int i = 0; i < 10; i++) {
+            while (!queues[i].isEmpty()) {
+                A[j] = queues[i].remove();
+                j++;
+            }
+        }
+
+
     }
 
     /* return the 10^d's place digit of n */
