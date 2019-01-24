@@ -136,7 +136,7 @@ public class Sorts {
             sigDigits /= 10;
         }
 
-        // sort for how significant digit has
+        // sort for how significant the largest digit is
         for (int i = 0; i < place; i++) {
             queueSorting(A, i);
         }
