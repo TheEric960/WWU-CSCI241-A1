@@ -1,6 +1,11 @@
 
 package sort;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
+
 public class Sorts {
 
     // maintains a count of comparisons performed by this Sorts object
@@ -117,7 +122,51 @@ public class Sorts {
      * Sort A using LSD radix sort. Uses counting sort to sort on each digit
      */
     public void radixSort(int[] A) {
-        // TODO
+        // find most significant digit
+        int sigDigits = 0;
+        for (int a : A) {
+            if (Math.abs(a) > sigDigits) {
+                sigDigits = Math.abs(a);
+            }
+        }
+
+        //find position of significant digit (i.e. ones, tens, etc)
+        int place = 1;  // ones place
+        while ((sigDigits) > 9) {
+            place++;
+            sigDigits /= 10;
+        }
+
+        // sort for how many places the digit has
+        for (int i = 0; i < place; i++) {
+            queueSorting(A, i);
+        }
+
+
+    }
+
+    private void queueSorting(int[] A, int place) {
+        // create queues
+        Queue<Integer>[] queues = new Queue[10];
+        for (int i = 0; i < 10; i++) {
+            queues[i] = new ArrayDeque<>();
+        }
+
+        // fill queues based on digit value
+        for (int a : A) {
+            queues[getDigit(a, place)].add(a);
+        }
+
+        // empty the queues in order
+        int j = 0;
+        for (int i = 0; i < 10; i++) {
+            while (!queues[i].isEmpty()) {
+                A[j] = queues[i].remove();
+                j++;
+            }
+        }
+
+
     }
 
     /* return the 10^d's place digit of n */
