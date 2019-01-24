@@ -22,7 +22,7 @@ public class SortsDriver {
         int[] arrB = arrO.clone();
 
         printArray(arrO, n, "Unsorted");
-        double time= 0;
+        double time;
 
         // sort based on input
         switch (choice) {
@@ -48,12 +48,12 @@ public class SortsDriver {
                 printInfo(time);
                 break;
             case "r":
-//                time = System.nanoTime();
-//                sorts.radixSort(arrB);
-//                time = (System.nanoTime() - time) / 1000;
-//                printArray(arrB, n, "Sorted");
-//                printInfo(time);
-//                break;
+                time = System.nanoTime();
+                sorts.radixSort(arrB);
+                time = (System.nanoTime() - time) / 1000;
+                printArray(arrB, n, "Sorted");
+                printInfo(time);
+                break;
             case "a":
                 time = System.nanoTime();
                 sorts.insertionSort(arrB, 0, arrB.length);
@@ -81,13 +81,13 @@ public class SortsDriver {
                 System.out.println("Time(\u00B5s): " + time);
                 sorts.resetComparisonCount();
 
-//                int[] arrE = arrO.clone();
-//                time = System.nanoTime();
-//                sorts.radixSort(arrE);
-//                time = (System.nanoTime() - time) / 1000;
-//                System.out.println("\nradix: " + sorts.getComparisonCount());
-//                System.out.println("Time(\u00B5s): " + time);
-//                printArray(arrE, n, "Sorted");
+                int[] arrE = arrO.clone();
+                time = System.nanoTime();
+                sorts.radixSort(arrE);
+                time = (System.nanoTime() - time) / 1000;
+                System.out.println("\nradix: " + sorts.getComparisonCount());
+                System.out.println("Time(\u00B5s): " + time);
+                printArray(arrE, n, "Sorted");
 
                 break;
             default:
