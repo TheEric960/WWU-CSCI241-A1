@@ -2,9 +2,8 @@
 package sort;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 public class Sorts {
 
@@ -142,7 +141,27 @@ public class Sorts {
             queueSorting(A, i);
         }
 
+        // sort negatives
+        Stack<Integer> n = new Stack<>();
+        Queue<Integer> p = new ArrayDeque<>();
 
+        for (int a : A) {
+            if (a < 0) n.push(a);
+            else p.add(a);
+        }
+
+        // empty in order
+        int i = 0;
+
+        while (!n.isEmpty()) {
+            A[i] = n.pop();
+            i++;
+        }
+
+        while (!p.isEmpty()) {
+            A[i] = p.remove();
+            i++;
+        }
     }
 
     private void queueSorting(int[] A, int place) {
@@ -154,7 +173,8 @@ public class Sorts {
 
         // fill queues based on digit value
         for (int a : A) {
-            queues[getDigit(a, place)].add(a);
+            int n = getDigit(Math.abs(a), place);   // get digit for queue
+            queues[n].add(a);
         }
 
         // empty the queues in order
