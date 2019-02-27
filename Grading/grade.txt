@@ -1,0 +1,84 @@
+Hello! This is [todo] grading your A1.
+
+Your total score is [todo] / 50
+
+The point breakdown is given in the sections below, corresponding to the
+rubric given on the A1 handout.
+
+===================================
+Repository and submission mechanics
+===================================
+[todo] / 1 point:
+Code is pushed to github and hours spent appear as a lone integer in hours.txt
+
+[todo: any additional deductions for compilation failures, etc. go here]
+
+
+======================
+Sorts.java Correctness
+======================
+
+Your Sorts.java was tested using unit tests by running gradle test. Each of the
+20 tests is worth 1 point. The tests for this assignment were the same tests as
+you were given, except with the random number generator seed changed so that
+the random arrays have different values. The output of the gradle test command
+is included in grading_outputs/unittests.txt; please see this file for details.
+
+[todo] / 20
+
+=========================
+SortsDriver.java Behavior
+=========================
+
+[todo] / 1 Prompts user for number of integers desired
+[todo] / 1 Prompts for type of sort to run (m, i, q, a)
+[todo] / 1 Uses a random number generator to populate arrays
+
+[todo] / 3 Each invocation of a sort correctly tallies the count of comparisons made.
+
+[todo] / 2 The a option invokes all four sorts and gives them the same input array
+
+[todo] / 2 Pre-sorted and sorted array(s) are printed if and only if n <= 20.
+
+==========
+Efficiency
+==========
+
+[todo] / 2 Mergesort runs in O(n log n)
+
+[todo] / 2 QuickSort runs in O(n log n) in the expected case
+
+[todo] / 2 Insertion sort runs in-place, and runs O(n2).
+
+[todo] / 2 Radix makes a constant number of O(n) passes over the input.
+
+=====
+Style
+=====
+
+Deductions for code clarity and style:
+
+[todo]: delete all that do not apply, adjust minor violations to -1. If none,
+include something like "Code looks good."
+-2 No author, date and purpose in a comment at the top of each file you write any code in
+-2 Introduced method(s),ww without a precise specification
+-2 Non-obvious or tricky code sections lack comments
+-2 Indentation should be consistent
+-2 Code is overly verbose or cryptic 
+-2 Methods are too long - use private helper methods
+-2 Variables and/or method names are not given informative names
+
+============
+Enhancements
+============
+
+
+
+=======
+Writeup
+=======
+
+[todo] / 3 Tally table of comparison counts for quick, merge and insertion.
+
+[todo] / 3 Plot of tallied numbers, including axis labels, title, and legend.
+
